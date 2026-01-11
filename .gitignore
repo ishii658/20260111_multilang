@@ -1,0 +1,13 @@
+target/
+
+# Scala/Java コンパイル生成物
+*.class
+*.tasty
+*.jar
+
+# 開発環境で生成される可能性のあるファイル
+# sbtやIDEを使用する場合に備えて含めておくと良いです
+target/
+project/
+.idea/
+.bsp/
