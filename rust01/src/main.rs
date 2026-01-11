@@ -40,7 +40,7 @@ fn main() {
 
     // Parse CLI arguments for schema/table (supports -s/--schema, -t/--table, or positional). Defaults: schema=public, table=documents
     let args: Vec<String> = env::args().collect();
-    let mut schema = "public".to_string();
+    let mut schema = env::var("DB_SCHEMA").unwrap_or_else(|_| "public".to_string());
     let mut table = "documents".to_string();
     let mut i = 1;
     while i < args.len() {
