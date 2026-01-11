@@ -12,12 +12,16 @@ object scala01 {
       // .master("local[*]")
       .getOrCreate()
     
-    // 2. JDBC接続情報の設定
-    // 実際の環境に合わせて値を変更してください
-    val jdbcUrl = "jdbc:postgresql://localhost:5432/docsearch"
-    val dbTable = "pdfdir.documents" // 読み込みたいテーブル名
-    val dbUser = "docsearch"
-    val dbPassword = "docsearch"
+    // 2. JDBC接続情報の設定（環境変数から読み込み）
+    // 環境変数: DB_NAME, DB_USER, DB_PASS, DB_SCHEMA
+    val dbName = sys.env.getOrElse("DB_NAME", "docsearch")
+    val dbUser = sys.env.getOrElse("DB_USER", "docsearch")
+    val dbPassword = sys.env.getOrElse("DB_PASS", "docsearch")
+    val dbSchema = sys.env.getOrElse("DB_SCHEMA", "pdfdir")
+    val jdbcUrl = s"jdbc:postgresql://localhost:5432/${dbName}"
+    val dbTable = s"${dbSchema}.documents" // 読み込みたいテーブル名
+    
+    println(s"Connecting to DB=${dbName}, user=${dbUser}, schema=${dbSchema}")
     
     // 3. 接続プロパティの設定
     val connectionProperties = new Properties()
