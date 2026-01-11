@@ -36,20 +36,36 @@ func main() {
 
 	fmt.Println("データベースに正常に接続しました")
 
-	// シンプルなクエリ実行例
-	rows, err := db.Query("SELECT version()")
+	// 指定スキーマのdocumentsテーブルからidとfile_nameを取得（limit 3）
+	query := fmt.Sprintf("SELECT id, file_name FROM %s.documents LIMIT 3", dbSchema)
+	
+	rows, err := db.Query(query)
 	if err != nil {
 		log.Fatal("クエリ実行エラー:", err)
 	}
 	defer rows.Close()
 
-	// クエリ結果の表示
+	// データを表示
+	fmt.Println("id, file_name のデータ:")
+	fmt.Println("------------------------")
+	
 	for rows.Next() {
-		var version string
-		err := rows.Scan(&version)
+		var id int
+		var fileName string
+		
+		// カラムの値をスキャン
+		err := rows.Scan(&id, &fileName)
 		if err != nil {
 			log.Fatal("結果のスキャンエラー:", err)
 		}
-		fmt.Println("PostgreSQLバージョン:", version)
+		
+		fmt.Printf("ID: %d, ファイル名: %s\n", id, fileName)
 	}
+
+	// エラーの確認
+	if err = rows.Err(); err != nil {
+		log.Fatal("行の処理エラー:", err)
+	}
+
+	fmt.Println("データ取得完了")
 }
