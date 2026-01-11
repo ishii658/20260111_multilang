@@ -1,0 +1,21 @@
+{
+  "name": "typescript01",
+  "version": "0.0.1",
+  "description": "``` mkdir typescript01 cd typescript01 npm init",
+  "license": "ISC",
+  "author": "ishii",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "ts-node typescript01.ts"
+  },
+  "dependencies": {
+    "pg": "^8.16.3"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.0.0",
+    "@types/pg": "^8.10.0"
+  }
+}
