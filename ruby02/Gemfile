@@ -1,0 +1,10 @@
+# Sinatraアプリ用の依存gem
+gem 'sinatra'
+gem 'rackup'
+gem 'puma'
+# Gemfile
+source 'https://rubygems.org'
+
+gem 'sinatra'
+gem 'rackup'
+gem 'puma'  # Webサーバー
