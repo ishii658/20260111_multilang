@@ -76,17 +76,6 @@ public class HelloApiController {
 }
 ```
 
-# 実アプリケーションの実行と確認
-
-```
-./mvnw spring-boot:run
-```
-
-```
-http://localhost:8080/api/data
-http://localhost:8080/
-```
-
 # static ディレクトリ変更
 
 src/main/resources/application.properties
@@ -97,4 +86,15 @@ src/main/resources/application.properties
 ```
 # 静的リソースの場所を 'public' ディレクトリに変更する例
 spring.web.resources.static-locations=classpath:/public/
+```
+
+# アプリケーションの実行と確認
+
+```
+./mvnw spring-boot:run
+```
+
+```
+http://localhost:8080/api/data
+http://localhost:8080/
 ```
